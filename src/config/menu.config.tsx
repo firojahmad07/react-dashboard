@@ -11,8 +11,8 @@ export const MENU_ROOT: TMenuConfig = [
   }, {
     title: 'Products',
     icon: 'tablet-text-down',
-    path: '/public-profile/profiles/default',
-    rootPath: '/public-profile/',
+    path: '/products/',
+    rootPath: '/products/',
     childrenIndex: 100
   }, { 
     title: 'Workflow',
@@ -24,22 +24,22 @@ export const MENU_ROOT: TMenuConfig = [
   }, {
     icon: 'book-open',
     title: 'Blogs',
-    path: '/account/home/get-started',
-    rootPath: '/account/',
+    path: '/blogs/user-guide',
+    rootPath: '/blogs/',
     childrenIndex: 2
 
   }, {
     icon: 'shop',
     title: 'Shop',
-    path: '/account/security/security-log',
-    rootPath: '/account/',
+    path: '/shop/orders',
+    rootPath: '/shop/',
     childrenIndex: 3
 
   }, { 
     icon: 'setting-2', 
     title: 'Settings', 
-    path: '/account/notifications', 
-    rootPath: '',
+    path: '/settings/categories',
+    rootPath: 'settings/',
     childrenIndex: 4
   }, { 
     icon: 'setting-3', 

@@ -1,6 +1,4 @@
-import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
-import { Main } from '@/layouts/demo4/main/Main';
-import { Demo4Layout } from '@/layouts/demo4';
+import { Route, Routes, Navigate } from 'react-router-dom'
 import { useContext, useEffect, useMemo } from 'react';
 import { SidebarContext } from '@/layouts/demo4/DashboardLayoutProvider';
 
@@ -8,17 +6,17 @@ import {
     WorkFlowDasbhard
 } from '@/pages/workflow/WorkFlowDasbhard';
 
-const WorkFlowIndex = () => {
+const BlogIndex = () => {
     const context = useContext(SidebarContext)
         const sideBarMenuData = useMemo(
             () => [
                 {
-                    title: "Workflow Navigation",
+                    title: "Blogs Navigation",
                     children: [
-                        { title: "Dashboard", path: "/workflow/dashboard" },
-                        { title: "Settings", path: "/workflow/settings" },
+                        { title: "User Guide", path: "/blogs/user-guide" },
                     ],
                 },
+                
             ],
             []
         );
@@ -30,12 +28,11 @@ const WorkFlowIndex = () => {
     return (
         <Routes>
             <Route>
-                <Route path='/dashboard' element={ <WorkFlowDasbhard /> } />
-                <Route path='/settings' element={ <WorkFlowDasbhard /> } />
+                <Route path='/user-guide' element={ <WorkFlowDasbhard /> } />
             </Route>
-            <Route index element={<Navigate to='/workflow/dashboard' />} />
+            <Route index element={<Navigate to='/blogs/user-guide' />} />
         </Routes>
     )
 }
 
-export {WorkFlowIndex} 
+export {BlogIndex} 

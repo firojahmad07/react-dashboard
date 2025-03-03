@@ -1,6 +1,6 @@
 import { KeenIcon } from '@/components/keenicons';
 import { useContext } from 'react';
-import { Demo4LayoutContext } from '@/layouts/demo4/Demo4LayoutProvider';
+import { SidebarContext } from '@/layouts/demo4/DashboardLayoutProvider';
 
 import {
   Menu,
@@ -58,9 +58,9 @@ const SidebarMenuDashboard = () => {
   ];
   const { isRTL } = useLanguage();
 
-  const { sidebarData } =  useContext(Demo4LayoutContext);
-  // const menuItems: IMenuItem[] = sidebarData;
-
+  const contextData = useContext(SidebarContext);
+  const sideBarDataAvailable = contextData?.sidebarMenu.length != 0 ? true : false;
+  console.log('contextData : ', contextData, sideBarDataAvailable);
   const buildDropdown = () => {
     return (
       <Menu highlight={true} className="menu-default p-0 w-full px-2">
@@ -107,22 +107,54 @@ const SidebarMenuDashboard = () => {
     );
   };
 
+  const productFilter = () => {
+    return (
+    <form className="max-w-sm mx-auto">
+      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Small select</label>
+      <select id="small" className="w-full btn btn-light btn-sm justify-between flex-nowrap">
+        <option selected>Choose a country</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </select>
+      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default select</label>
+      <select id="default" className="w-full btn btn-light btn-sm justify-between flex-nowrap">
+        <option selected>Choose a country</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </select>
+      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Large select</label>
+      <select id="large" className="w-full btn btn-light btn-sm justify-between flex-nowrap">
+        <option selected>Choose a country</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </select>
+    </form>
+
+    )
+  }
+
   const buildMenu = () => {
     return (
       <Menu highlight={true} className="flex-col gap-5">
-        {sidebarData.map((heading, index) => {
+        {contextData?.sidebarMenu.map((mainItem, index) => {
           return (
             <div className="flex flex-col gap-px" key={index}>
               <MenuItem>
                 <div className="px-2.5 text-xs font-medium text-gray-600 mb-1 uppercase">
-                  {heading.title}
+                  {mainItem.title}
                 </div>
               </MenuItem>
-              {heading.children?.map((item, index) => {
+              {mainItem.children?.map((item, index) => {
                 return (
                   <MenuItem key={index} className={item.active ? 'active' : ''}>
                     <MenuLink
-                      path={item.title}
+                      path={item.path}
                       className="py-2 px-2.5 rounded-md border border-transparent menu-item-active:border-gray-200 menu-item-active:bg-light menu-link-hover:bg-light menu-link-hover:border-gray-200 "
                     >
                       <MenuIcon>
@@ -144,8 +176,8 @@ const SidebarMenuDashboard = () => {
 
   return (
     <div className="flex flex-col gap-7.5 px-2">
-      {buildDropdown()}
-      {buildMenu()}
+      {/* {buildDropdown()} */}
+       { !sideBarDataAvailable ? productFilter() :  buildMenu()}
     </div>
   );
 };

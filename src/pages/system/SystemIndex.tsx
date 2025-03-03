@@ -1,14 +1,41 @@
 import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
 import { Demo4Layout } from '@/layouts/demo4';
+import { useContext, useEffect, useMemo } from 'react';
+import { SidebarContext } from '@/layouts/demo4/DashboardLayoutProvider';
 import {
     WorkFlowDasbhard
 } from '@/pages/workflow/WorkFlowDasbhard';
 
 const SystemIndex = () => {
-    
+    const context = useContext(SidebarContext)
+        const sideBarMenuData = useMemo(
+            () => [
+                {
+                    title: "System Navigation",
+                    children: [
+                        { title: "Catalog Moinitoring", path: "/system/catalog-monintoring" },
+                        { title: "Configuration", path: "/system/configuration" }
+                    ],
+                },
+                {
+                    title: "Users Management",
+                    children: [
+                        { title: "Users", path: "/system/users" },
+                        { title: "Roles", path: "/system/roles" },
+                        { title: "User groups", path: "/system/user-groups" }
+                    ]
+                }
+            ],
+            []
+        );
+        useEffect(() => {
+            if (context?.setSidebarMenu) {
+                context.setSidebarMenu(sideBarMenuData);
+            }
+        }, [context]);
     return (
         <Routes>
-            <Route element={<Demo4Layout />}>
+            <Route>
                 <Route path='/catalog-monintoring' element={ <WorkFlowDasbhard /> } />
                 <Route path='/configuration' element={ <WorkFlowDasbhard /> } />
                 {/* user navigation */}

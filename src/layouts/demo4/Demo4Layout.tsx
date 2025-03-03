@@ -1,5 +1,6 @@
 import useBodyClasses from '@/hooks/useBodyClasses';
-import { Demo4LayoutProvider, Main } from '.';
+import { Main } from '.';
+import { DashboardLayoutProvider } from './DashboardLayoutProvider';
 
 const Demo4Layout = () => {
   // Using the custom hook to set multiple CSS variables and class properties
@@ -18,9 +19,9 @@ const Demo4Layout = () => {
 
   return (
     // Providing layout context and rendering the main content
-    <Demo4LayoutProvider>
+    <DashboardLayoutProvider>
       <Main />
-    </Demo4LayoutProvider>
+    </DashboardLayoutProvider>
   );
 };
 

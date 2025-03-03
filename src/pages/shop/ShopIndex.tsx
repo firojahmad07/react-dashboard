@@ -8,17 +8,20 @@ import {
     WorkFlowDasbhard
 } from '@/pages/workflow/WorkFlowDasbhard';
 
-const WorkFlowIndex = () => {
+const ShopIndex = () => {
     const context = useContext(SidebarContext)
         const sideBarMenuData = useMemo(
             () => [
                 {
-                    title: "Workflow Navigation",
+                    title: "Sales Navigation",
                     children: [
-                        { title: "Dashboard", path: "/workflow/dashboard" },
-                        { title: "Settings", path: "/workflow/settings" },
+                        { title: "Orders", path: "/shop/orders" },
+                        { title: "Payments", path: "/shop/payments" },
+                        { title: "Invoices", path: "/shop/invoices" },
+                        { title: "Customers", path: "/shop/customers" }
                     ],
                 },
+                
             ],
             []
         );
@@ -30,12 +33,14 @@ const WorkFlowIndex = () => {
     return (
         <Routes>
             <Route>
-                <Route path='/dashboard' element={ <WorkFlowDasbhard /> } />
-                <Route path='/settings' element={ <WorkFlowDasbhard /> } />
+                <Route path='/orders' element={ <WorkFlowDasbhard /> } />
+                <Route path='/payments' element={ <WorkFlowDasbhard /> } />
+                <Route path='/invoices' element={ <WorkFlowDasbhard /> } />
+                <Route path='/customers' element={ <WorkFlowDasbhard /> } />
             </Route>
-            <Route index element={<Navigate to='/workflow/dashboard' />} />
+            <Route index element={<Navigate to='/shop/orders' />} />
         </Routes>
     )
 }
 
-export {WorkFlowIndex} 
+export {ShopIndex} 

@@ -10,7 +10,7 @@ interface SidebarItem {
   title: string,
   active?: boolean,
   path?: string
-  children?: string
+  children?: any
 }
 // Interface defining the properties of the layout provider context
 export interface IDemo4LayoutProviderProps {
@@ -18,12 +18,12 @@ export interface IDemo4LayoutProviderProps {
   mobileSidebarOpen: boolean; // Whether the mobile sidebar is open
   setMobileSidebarOpen: (open: boolean) => void; // Function to toggle the mobile sidebar
   setSidebarCollapse: (collapse: boolean) => void; 
-  sidebarData: SidebarItem[], // Default layout configuration
-  setSidebarMenu: Dispatch<SetStateAction<SidebarItem[]>>; 
+  // sidebarData: SidebarItem[], // Default layout configuration
+  // setSidebarMenu: any; 
 }
 
 // Initial layout provider properties, using Demo4 layout configuration as the default
-const initalLayoutProps: IDemo4LayoutProviderProps = {
+const initalLayoutProps = {
   layout: Demo4LayoutConfig,
   mobileSidebarOpen: false, // Mobile sidebar is closed by default
   setMobileSidebarOpen: (open: boolean) => {
@@ -33,11 +33,14 @@ const initalLayoutProps: IDemo4LayoutProviderProps = {
     console.log(`${collapse}`);
   },
   sidebarData: [],
-  setSidebarMenu: () => {}
+  setSidebarMenu: (sidebarData: any) => {
+    console.log(`${sidebarData}`);
+
+  }
 };
 
 // Create a context to manage the layout-related state and logic for Demo4 layout
-const Demo4LayoutContext = createContext<IDemo4LayoutProviderProps>(initalLayoutProps);
+const Demo4LayoutContext = createContext(initalLayoutProps);
 
 // Custom hook to access the layout context in other components
 const useDemo4Layout = () => useContext(Demo4LayoutContext);
@@ -61,7 +64,7 @@ const Demo4LayoutProvider = ({ children }: PropsWithChildren) => {
   // Set the initial state for layout and mobile sidebar
   const [layout] = useState(layoutConfig); // Layout configuration is stored in state
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false); // Manage state for mobile sidebar
-  const [sidebarData, setSidebarMenu] = useState<SidebarItem[]>([]);
+  const [sidebarData, setSidebarMenu] = useState([]);
  // Function to collapse or expand the sidebar
   const setSidebarCollapse = (collapse: boolean) => {
     const updatedLayout = {
