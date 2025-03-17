@@ -176,8 +176,7 @@ const SidebarMenuDashboard = () => {
 
   return (
     <div className="flex flex-col gap-7.5 px-2">
-      {/* {buildDropdown()} */}
-       { !sideBarDataAvailable ? productFilter() :  buildMenu()}
+      { !sideBarDataAvailable ? productFilter() :  buildMenu()}
     </div>
   );
 };
